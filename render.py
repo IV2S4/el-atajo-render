@@ -10,6 +10,7 @@ import json, os, re, subprocess, sys, tempfile, shutil, wave
 from pathlib import Path
 
 import numpy as np
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import requests
 
 W, H, FPS, SR = 1080, 1920, 30, 24000
@@ -125,7 +126,7 @@ def tiempos_palabras(texto, inicio, dur):
     return res
 
 
-def escribir_ass(escenas_tiempos, path):
+def escribir_ass(escenas_tiempos, path, gancho=""):
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -135,11 +136,21 @@ WrapStyle: 2
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Sub,Montserrat ExtraBold,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,1,0,1,9,4,5,60,60,0,1
+Style: Gancho,Montserrat ExtraBold,92,&H00101010,&H00101010,&H0000D4FF,&H0000D4FF,0,0,0,0,100,100,1,0,3,18,0,8,90,90,330,1
+Style: Marca,Montserrat ExtraBold,40,&H50FFFFFF,&H50FFFFFF,&H70D62BFF,&H00000000,0,0,0,0,100,100,3,0,1,3,0,9,50,50,70,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     lines = []
+    total = max((p[-1][2] for p in escenas_tiempos if p), default=0) + 1
+    # Marca "EL ATAJO" arriba a la derecha todo el video
+    lines.append(f"Dialogue: 1,{ass_time(0)},{ass_time(total)},Marca,,0,0,0,,EL ATAJO")
+    # Gancho grande los primeros segundos (texto negro sobre franja amarilla)
+    if gancho:
+        g = gancho.strip().upper()
+        lines.append(f"Dialogue: 2,{ass_time(0)},{ass_time(2.8)},Gancho,,0,0,0,,"
+                     r"{\q0\fad(120,250)\fscx80\fscy80\t(0,180,\fscx106\fscy106)\t(180,320,\fscx100\fscy100)}" + g)
     AMARILLO = r"{\c&H00D4FF&\fscx110\fscy110}"   # BGR -> #FFD400
     BLANCO = r"{\c&HFFFFFF&\fscx100\fscy100}"
     for palabras in escenas_tiempos:
@@ -172,10 +183,30 @@ def main(payload_path, salida):
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "v.txt"), "-c", "copy", str(tmp / "video.mp4")])
     (tmp / "a.txt").write_text("".join(f"file '{w}'\n" for w in wavs))
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "a.txt"), "-c", "pcm_s16le", str(tmp / "voz.wav")])
-    escribir_ass(subs, tmp / "subs.ass")
+    escribir_ass(subs, tmp / "subs.ass", data.get("gancho") or "")
 
     vf = f"ass={tmp/'subs.ass'}:fontsdir={FONTS_DIR}"
-    run(["ffmpeg", "-y", "-i", str(tmp / "video.mp4"), "-i", str(tmp / "voz.wav"), "-vf", vf,
+    entradas = ["-i", str(tmp / "video.mp4"), "-i", str(tmp / "voz.wav")]
+    usar_musica = data.get("musica", True)
+    if usar_musica:
+        try:
+            import musica
+            musica.guardar(tmp / "musica.wav", musica.generar(t + 0.5))
+            entradas += ["-i", str(tmp / "musica.wav")]
+        except Exception as e:
+            print("Sin música (falló el generador):", e, flush=True)
+            usar_musica = False
+    if usar_musica:
+        # la música baja sola cuando habla la voz (ducking) y se desvanece al final
+        fin = max(0.0, t - 2.0)
+        af = ("[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v1][v2];"
+              f"[2:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=0.45,afade=t=in:d=0.8,afade=t=out:st={fin:.2f}:d=2[mus];"
+              "[mus][v2]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=350[duck];"
+              "[v1][duck]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]")
+        mapa = ["-filter_complex", af, "-map", "0:v", "-map", "[a]"]
+    else:
+        mapa = []
+    run(["ffmpeg", "-y", *entradas, "-vf", vf, *mapa,
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", "-movflags", "+faststart", salida])
     shutil.rmtree(tmp, ignore_errors=True)
