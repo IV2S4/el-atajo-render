@@ -126,7 +126,16 @@ def tiempos_palabras(texto, inicio, dur):
     return res
 
 
-def escribir_ass(escenas_tiempos, path, gancho=""):
+def bgr(hexcolor, defecto="00D4FF"):
+    """'#FFD400' -> '00D4FF' (formato de color de subtítulos ASS: azul-verde-rojo)."""
+    h = (hexcolor or "").lstrip("#")
+    if len(h) != 6:
+        return defecto
+    return (h[4:6] + h[2:4] + h[0:2]).upper()
+
+
+def escribir_ass(escenas_tiempos, path, gancho="", color=""):
+    c = bgr(color)
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -136,7 +145,7 @@ WrapStyle: 2
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Sub,Montserrat ExtraBold,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,1,0,1,9,4,5,60,60,0,1
-Style: Gancho,Montserrat ExtraBold,92,&H00101010,&H00101010,&H0000D4FF,&H0000D4FF,0,0,0,0,100,100,1,0,3,18,0,8,90,90,330,1
+Style: Gancho,Montserrat ExtraBold,92,&H00101010,&H00101010,&H00{c},&H00{c},0,0,0,0,100,100,1,0,3,18,0,8,90,90,330,1
 Style: Marca,Montserrat ExtraBold,40,&H50FFFFFF,&H50FFFFFF,&H70D62BFF,&H00000000,0,0,0,0,100,100,3,0,1,3,0,9,50,50,70,1
 
 [Events]
@@ -151,7 +160,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         g = gancho.strip().upper()
         lines.append(f"Dialogue: 2,{ass_time(0)},{ass_time(2.8)},Gancho,,0,0,0,,"
                      r"{\q0\fad(120,250)\fscx80\fscy80\t(0,180,\fscx106\fscy106)\t(180,320,\fscx100\fscy100)}" + g)
-    AMARILLO = r"{\c&H00D4FF&\fscx110\fscy110}"   # BGR -> #FFD400
+    AMARILLO = r"{\c&H" + c + r"&\fscx110\fscy110}"   # color del formato (por defecto #FFD400)
     BLANCO = r"{\c&HFFFFFF&\fscx100\fscy100}"
     for palabras in escenas_tiempos:
         grupos = [palabras[k:k + 3] for k in range(0, len(palabras), 3)]
@@ -183,7 +192,7 @@ def main(payload_path, salida):
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "v.txt"), "-c", "copy", str(tmp / "video.mp4")])
     (tmp / "a.txt").write_text("".join(f"file '{w}'\n" for w in wavs))
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "a.txt"), "-c", "pcm_s16le", str(tmp / "voz.wav")])
-    escribir_ass(subs, tmp / "subs.ass", data.get("gancho") or "")
+    escribir_ass(subs, tmp / "subs.ass", data.get("gancho") or "", (data.get("estilo") or {}).get("color", ""))
 
     vf = f"ass={tmp/'subs.ass'}:fontsdir={FONTS_DIR}"
     entradas = ["-i", str(tmp / "video.mp4"), "-i", str(tmp / "voz.wav")]
