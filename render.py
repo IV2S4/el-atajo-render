@@ -202,10 +202,10 @@ def main(payload_path, salida):
         af = ("[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v1][v2];"
               f"[2:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=0.45,afade=t=in:d=0.8,afade=t=out:st={fin:.2f}:d=2[mus];"
               "[mus][v2]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=350[duck];"
-              "[v1][duck]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]")
+              "[v1][duck]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]")
         mapa = ["-filter_complex", af, "-map", "0:v", "-map", "[a]"]
     else:
-        mapa = []
+        mapa = ["-af", "loudnorm=I=-14:TP=-1.5:LRA=11"]
     run(["ffmpeg", "-y", *entradas, "-vf", vf, *mapa,
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", "-movflags", "+faststart", salida])
