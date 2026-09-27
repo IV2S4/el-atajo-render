@@ -1,0 +1,76 @@
+name: Crear Short
+
+on:
+  repository_dispatch:
+    types: [render]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CALLBACK: ${{ github.event.client_payload.callback }}
+      PAYLOAD: ${{ toJson(github.event.client_payload) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Programas del sistema (FFmpeg + espeak)
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg espeak-ng
+
+      - name: Guardar modelos descargados
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-kokoro-v1
+
+      - name: Instalar librerías
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+
+      - name: Leer el pedido
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            printf '%s' "$PAYLOAD" > payload.json
+          else
+            cp ejemplo.json payload.json
+          fi
+
+      - name: Crear el video
+        run: python render.py payload.json video.mp4
+
+      - name: Subir el video (link público)
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="video-${{ github.run_id }}"
+          gh release create "$TAG" video.mp4 --title "$TAG" --notes "Short creado automáticamente"
+          echo "url=https://github.com/${{ github.repository }}/releases/download/$TAG/video.mp4" >> "$GITHUB_OUTPUT"
+
+      - name: Avisar a n8n (listo)
+        if: success() && env.CALLBACK != ''
+        env:
+          URL: ${{ steps.rel.outputs.url }}
+        run: |
+          curl -sS -X POST -H "Content-Type: application/json" \
+            -d "{\"status\":\"done\",\"url\":\"$URL\"}" "$CALLBACK"
+
+      - name: Avisar a n8n (error)
+        if: failure() && env.CALLBACK != ''
+        run: |
+          curl -sS -X POST -H "Content-Type: application/json" \
+            -d "{\"status\":\"error\",\"message\":\"Falló la creación del video. Revisa GitHub Actions (run ${{ github.run_id }}).\"}" "$CALLBACK"
