@@ -1,0 +1,8 @@
+kokoro>=0.9.4
+misaki[en]
+phonemizer-fork
+espeakng-loader
+soundfile
+numpy
+requests
+edge-tts
