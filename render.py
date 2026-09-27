@@ -163,7 +163,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     AMARILLO = r"{\c&H" + c + r"&\fscx110\fscy110}"   # color del formato (por defecto #FFD400)
     BLANCO = r"{\c&HFFFFFF&\fscx100\fscy100}"
     for palabras in escenas_tiempos:
-        grupos = [palabras[k:k + 3] for k in range(0, len(palabras), 3)]
+        # grupos de hasta 3 palabras, cortando antes si la línea queda muy larga (no se sale de la pantalla)
+        grupos, g = [], []
+        for pw in palabras:
+            if g and (len(g) == 3 or len(" ".join(x[0] for x in g + [pw])) > 16):
+                grupos.append(g); g = []
+            g.append(pw)
+        if g:
+            grupos.append(g)
         for g in grupos:
             for j, (_, s, e) in enumerate(g):
                 txt = " ".join((AMARILLO if k == j else BLANCO) + w.upper() for k, (w, _, _) in enumerate(g))
