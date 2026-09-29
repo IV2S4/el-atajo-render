@@ -58,16 +58,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="video-${{ github.run_id }}"
-          gh release create "$TAG" video.mp4 --title "$TAG" --notes "Short creado automáticamente"
+          if [ -f miniatura.jpg ]; then
+            gh release create "$TAG" video.mp4 miniatura.jpg --title "$TAG" --notes "Video creado automáticamente"
+            echo "thumb=https://github.com/${{ github.repository }}/releases/download/$TAG/miniatura.jpg" >> "$GITHUB_OUTPUT"
+          else
+            gh release create "$TAG" video.mp4 --title "$TAG" --notes "Video creado automáticamente"
+          fi
           echo "url=https://github.com/${{ github.repository }}/releases/download/$TAG/video.mp4" >> "$GITHUB_OUTPUT"
 
       - name: Avisar a n8n (listo)
         if: success() && env.CALLBACK != ''
         env:
           URL: ${{ steps.rel.outputs.url }}
+          THUMB: ${{ steps.rel.outputs.thumb }}
         run: |
           CAPS=$(cat video.mp4.capitulos.json 2>/dev/null || echo '[]')
-          python3 -c 'import json,os,sys; print(json.dumps({"status":"done","url":os.environ["URL"],"capitulos":json.loads(sys.argv[1])}))' "$CAPS" > body.json
+          python3 -c 'import json,os,sys; print(json.dumps({"status":"done","url":os.environ["URL"],"capitulos":json.loads(sys.argv[1]),"miniatura":os.environ.get("THUMB","")}))' "$CAPS" > body.json
           curl -sS -X POST -H "Content-Type: application/json" -d @body.json "$CALLBACK"
 
       - name: Avisar a n8n (error)
