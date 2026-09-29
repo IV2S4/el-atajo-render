@@ -1,4 +1,10 @@
-# El Atajo · Render gratis
+# El Atajo · AUTONOMON
+
+> **YouTube channel:** ELATAJO · This project **uses YouTube API Services** to upload the owner's own videos to his own YouTube channel.
+>
+> 🔒 **[Privacy Policy](PRIVACIDAD.md)** · [YouTube Terms of Service](https://www.youtube.com/t/terms) · [Google Privacy Policy](http://www.google.com/policies/privacy)
+
+## Render gratis
 
 Crea los Shorts verticales (1080×1920) **sin marca de agua y sin pagar**:
 
