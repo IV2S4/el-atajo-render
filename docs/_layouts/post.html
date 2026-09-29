@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{% assign palabras = content | strip_html | number_of_words %}
+{% assign min = palabras | divided_by: 200 | plus: 1 %}
+<article class="wrap post">
+  <a class="volver" href="{{ '/' | relative_url }}">← Todos los atajos</a>
+  <p class="meta">{{ page.date | date: "%d/%m/%Y" }} · {{ min }} min de lectura</p>
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+  {% if page.tags.size > 0 %}<p class="tags">{% for t in page.tags %}<span>#{{ t }}</span>{% endfor %}</p>{% endif %}
+  {% if page.imagen %}<img class="portada" src="{{ page.imagen }}" alt="">{% endif %}
+  <div class="contenido">{{ content }}</div>
+  <div class="cta">
+    <div><strong>¿Te sirvió este atajo?</strong><br>En el canal hay uno nuevo cada semana.</div>
+    <a class="btn" href="{{ site.youtube }}" target="_blank" rel="noopener">▶ Suscribirme</a>
+  </div>
+</article>

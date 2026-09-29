@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% assign iconos = "🤖,💰,🚀,⚡,📱,🧠,📈,🛠️" | split: "," %}
+<section class="hero">
+  <div class="wrap">
+    <p class="eti">Blog del canal ELATAJO</p>
+    <h1>Atajos prácticos para la <span class="mark">vida</span>, el <span class="mark">dinero</span> y la <span class="mark">tecnología</span>.</h1>
+    <p class="sub">Cada artículo viene de un video del canal. Léelo en 5 minutos o míralo en YouTube.</p>
+    <a class="btn" href="{{ site.youtube }}" target="_blank" rel="noopener">▶ Ver el canal</a>
+  </div>
+</section>
+<section class="wrap">
+  <h2 class="sec">Últimos atajos</h2>
+  <div class="grid">
+  {% for post in site.posts %}
+    {% assign i = forloop.index0 | modulo: 8 %}
+    {% assign palabras = post.content | strip_html | number_of_words %}
+    {% assign min = palabras | divided_by: 200 | plus: 1 %}
+    <a class="card" href="{{ post.url | relative_url }}">
+      <div class="card-img g{{ i }}">{% if post.imagen %}<img src="{{ post.imagen }}" alt="" loading="lazy">{% else %}<span>{{ iconos[i] }}</span>{% endif %}</div>
+      <div class="card-body">
+        <p class="meta">{{ post.date | date: "%d/%m/%Y" }} · {{ min }} min de lectura</p>
+        <h3>{{ post.title }}</h3>
+        <p class="desc">{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
+        {% if post.tags.size > 0 %}<p class="tags">{% for t in post.tags limit:3 %}<span>#{{ t }}</span>{% endfor %}</p>{% endif %}
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+  {% if site.posts.size == 0 %}<p>Pronto habrá artículos aquí.</p>{% endif %}
+</section>
