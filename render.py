@@ -1,10 +1,12 @@
 """
-El Atajo - Render gratis de Shorts verticales (1080x1920)
+El Atajo - Render gratis de Shorts verticales (1080x1920) y videos largos horizontales (1920x1080)
 Voz: Kokoro TTS (modelo abierto de Hugging Face). Respaldo: edge-tts.
 Video: FFmpeg. Subtítulos palabra por palabra (ASS).
 
 Uso:  python render.py payload.json salida.mp4
-payload.json = {"escenas": [{"texto": "...", "tipo": "video"|"foto", "src": "https://..."}], "voz": "em_alex"}
+payload.json = {"escenas": [{"texto": "...", "tipo": "video"|"foto", "src": "https://...", "capitulo": "(opcional)"}],
+                "voz": "em_alex", "orientacion": "vertical"|"horizontal"}
+Si hay capítulos, además escribe <salida>.capitulos.json con el segundo en que empieza cada uno.
 """
 import json, os, re, subprocess, sys, tempfile, shutil, wave
 from pathlib import Path
@@ -78,7 +80,8 @@ def bajar(url, dest):
     return dest
 
 
-COVER = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps={FPS},format=yuv420p"
+def cover():
+    return f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps={FPS},format=yuv420p"
 ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "21", "-pix_fmt", "yuv420p", "-an"]
 
 
@@ -98,7 +101,7 @@ def clip_escena(i, esc, dur, tmp):
                   "setsar=1,format=yuv420p")
             run(["ffmpeg", "-y", "-loop", "1", "-i", str(f), "-t", f"{dur:.3f}", "-vf", vf, *ENC, str(out)])
         else:
-            run(["ffmpeg", "-y", "-stream_loop", "-1", "-i", str(f), "-t", f"{dur:.3f}", "-vf", COVER, *ENC, str(out)])
+            run(["ffmpeg", "-y", "-stream_loop", "-1", "-i", str(f), "-t", f"{dur:.3f}", "-vf", cover(), *ENC, str(out)])
     except Exception as e:
         print(f"Escena {i+1}: sin imagen usable ({e}); uso fondo de color", flush=True)
         colores = ["0x1b0540", "0x062b3d", "0x3a0a5c", "0x0b1a3d"]
@@ -134,8 +137,13 @@ def bgr(hexcolor, defecto="00D4FF"):
     return (h[4:6] + h[2:4] + h[0:2]).upper()
 
 
-def escribir_ass(escenas_tiempos, path, gancho="", color=""):
+def escribir_ass(escenas_tiempos, path, gancho="", color="", capitulos=None):
     c = bgr(color)
+    horiz = W > H
+    if horiz:   # video largo 16:9: subtítulos más chicos abajo, más palabras por línea
+        sub_size, gan_size, gan_mv, marca_size, max_pal, max_chr, sub_y = 64, 78, 90, 34, 5, 34, int(H * 0.85)
+    else:
+        sub_size, gan_size, gan_mv, marca_size, max_pal, max_chr, sub_y = 96, 92, 330, 40, 3, 16, int(H * 0.64)
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -144,9 +152,10 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Sub,Montserrat ExtraBold,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,1,0,1,9,4,5,60,60,0,1
-Style: Gancho,Montserrat ExtraBold,92,&H00101010,&H00101010,&H00{c},&H00{c},0,0,0,0,100,100,1,0,3,18,0,8,90,90,330,1
-Style: Marca,Montserrat ExtraBold,40,&H50FFFFFF,&H50FFFFFF,&H70D62BFF,&H00000000,0,0,0,0,100,100,3,0,1,3,0,9,50,50,70,1
+Style: Sub,Montserrat ExtraBold,{sub_size},&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,1,0,1,9,4,5,60,60,0,1
+Style: Gancho,Montserrat ExtraBold,{gan_size},&H00101010,&H00101010,&H00{c},&H00{c},0,0,0,0,100,100,1,0,3,18,0,8,90,90,{gan_mv},1
+Style: Cap,Montserrat ExtraBold,{int(gan_size*0.8)},&H00101010,&H00101010,&H00{c},&H00{c},0,0,0,0,100,100,1,0,3,14,0,7,70,70,70,1
+Style: Marca,Montserrat ExtraBold,{marca_size},&H50FFFFFF,&H50FFFFFF,&H70D62BFF,&H00000000,0,0,0,0,100,100,3,0,1,3,0,9,50,50,70,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -160,13 +169,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         g = gancho.strip().upper()
         lines.append(f"Dialogue: 2,{ass_time(0)},{ass_time(2.8)},Gancho,,0,0,0,,"
                      r"{\q0\fad(120,250)\fscx80\fscy80\t(0,180,\fscx106\fscy106)\t(180,320,\fscx100\fscy100)}" + g)
+    # Títulos de capítulo (videos largos): franja de color arriba a la izquierda unos segundos
+    for ct, titulo in (capitulos or []):
+        if ct > 0.5:
+            lines.append(f"Dialogue: 2,{ass_time(ct)},{ass_time(ct + 3.5)},Cap,,0,0,0,,"
+                         r"{\q0\fad(150,300)}" + titulo.strip().upper())
     AMARILLO = r"{\c&H" + c + r"&\fscx110\fscy110}"   # color del formato (por defecto #FFD400)
     BLANCO = r"{\c&HFFFFFF&\fscx100\fscy100}"
     for palabras in escenas_tiempos:
         # grupos de hasta 3 palabras, cortando antes si la línea queda muy larga (no se sale de la pantalla)
         grupos, g = [], []
         for pw in palabras:
-            if g and (len(g) == 3 or len(" ".join(x[0] for x in g + [pw])) > 16):
+            if g and (len(g) == max_pal or len(" ".join(x[0] for x in g + [pw])) > max_chr):
                 grupos.append(g); g = []
             g.append(pw)
         if g:
@@ -174,19 +188,24 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         for g in grupos:
             for j, (_, s, e) in enumerate(g):
                 txt = " ".join((AMARILLO if k == j else BLANCO) + w.upper() for k, (w, _, _) in enumerate(g))
-                lines.append(f"Dialogue: 0,{ass_time(s)},{ass_time(e)},Sub,,0,0,0,,{{\\pos({W//2},{int(H*0.64)})}}{txt}")
+                lines.append(f"Dialogue: 0,{ass_time(s)},{ass_time(e)},Sub,,0,0,0,,{{\\pos({W//2},{sub_y})}}{txt}")
     Path(path).write_text(head + "\n".join(lines) + "\n", encoding="utf-8")
 
 
 # ---------------- PRINCIPAL ----------------
 def main(payload_path, salida):
+    global W, H
     data = json.loads(Path(payload_path).read_text(encoding="utf-8"))
+    if data.get("orientacion") == "horizontal":
+        W, H = 1920, 1080
     escenas = [e for e in data["escenas"] if (e.get("texto") or "").strip()]
     voice = data.get("voz") or "em_alex"
     tmp = Path(tempfile.mkdtemp())
-    wavs, segs, subs, t = [], [], [], 0.0
+    wavs, segs, subs, caps, t = [], [], [], [], 0.0
     for i, esc in enumerate(escenas):
         texto = esc["texto"].strip()
+        if (esc.get("capitulo") or "").strip():
+            caps.append((t, esc["capitulo"].strip()))
         wav = tmp / f"voz{i:02d}.wav"
         dur = voz(texto, voice, wav)
         print(f"Escena {i+1}/{len(escenas)}: {dur:.1f}s", flush=True)
@@ -199,7 +218,7 @@ def main(payload_path, salida):
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "v.txt"), "-c", "copy", str(tmp / "video.mp4")])
     (tmp / "a.txt").write_text("".join(f"file '{w}'\n" for w in wavs))
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "a.txt"), "-c", "pcm_s16le", str(tmp / "voz.wav")])
-    escribir_ass(subs, tmp / "subs.ass", data.get("gancho") or "", (data.get("estilo") or {}).get("color", ""))
+    escribir_ass(subs, tmp / "subs.ass", data.get("gancho") or "", (data.get("estilo") or {}).get("color", ""), caps)
 
     vf = f"ass={tmp/'subs.ass'}:fontsdir={FONTS_DIR}"
     entradas = ["-i", str(tmp / "video.mp4"), "-i", str(tmp / "voz.wav")]
@@ -225,6 +244,9 @@ def main(payload_path, salida):
     run(["ffmpeg", "-y", *entradas, "-vf", vf, *mapa,
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", "-movflags", "+faststart", salida])
+    if caps:   # para los capítulos de YouTube (0:00 Intro, 1:12 ..., etc.)
+        Path(str(salida) + ".capitulos.json").write_text(json.dumps(
+            [{"segundo": round(ct, 1), "titulo": ti} for ct, ti in caps], ensure_ascii=False), encoding="utf-8")
     shutil.rmtree(tmp, ignore_errors=True)
     print(f"LISTO: {salida} ({t:.1f}s)", flush=True)
 
