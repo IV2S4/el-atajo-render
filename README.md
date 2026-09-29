@@ -2,7 +2,7 @@
 
 > **YouTube channel:** ELATAJO · This project **uses YouTube API Services** to upload the owner's own videos to his own YouTube channel.
 >
-> 🔒 **[Privacy Policy](PRIVACIDAD.md)** · [YouTube Terms of Service](https://www.youtube.com/t/terms) · [Google Privacy Policy](http://www.google.com/policies/privacy)
+> 🔒 **[Privacy Policy](PRIVACIDAD.md)** · **[Terms of Service](TERMINOS.md)** · [YouTube Terms of Service](https://www.youtube.com/t/terms) · [Google Privacy Policy](http://www.google.com/policies/privacy)
 
 ## Render gratis
 
