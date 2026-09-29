@@ -18,7 +18,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FFD400'/><path d='M30 72 L50 26 L70 72 M38 56 H62' stroke='%230b0d12' stroke-width='11' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ '/assets/estilo.css' | relative_url }}?v=3">
+<link rel="stylesheet" href="{{ '/assets/estilo.css' | relative_url }}?v=4">
 </head>
 <body class="{{ page.layout }}">
 <div class="barra-progreso" id="progreso"></div>
@@ -70,6 +70,7 @@
       toc.appendChild(ol); toc.hidden = false;
     }
   }
+  document.querySelectorAll('[data-boletin]').forEach(function(f){ f.addEventListener('submit', function(ev){ ev.preventDefault(); var m = f.querySelector('.bol-msg'), b = f.querySelector('button'), e = f.email.value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)) { m.textContent = 'Revisa tu correo, parece que tiene un error.'; m.className = 'bol-msg mal'; return; } b.disabled = true; b.textContent = 'Enviando…'; fetch('https://147-224-171-235.sslip.io/webhook/boletin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: e, web: f.web.value, origen: f.getAttribute('data-origen') }) }).then(function(r){ return r.json(); }).then(function(r){ if (r && r.ok) { f.innerHTML = '<p class="bol-ok">🎉 ¡Listo! Ya estás en la lista de El Atajo.</p>'; } else { throw 0; } }).catch(function(){ m.textContent = 'No se pudo enviar. Intenta de nuevo en un momento.'; m.className = 'bol-msg mal'; b.disabled = false; b.textContent = 'Quiero los atajos'; }); }); });
   document.querySelectorAll('[data-copiar]').forEach(function(b){ b.addEventListener('click', function(){ try { navigator.clipboard.writeText(location.href.split('#')[0]); b.textContent = '¡Copiado!'; setTimeout(function(){ b.textContent = '🔗 Copiar link'; }, 1800); } catch (e) {} }); });
 })();
 </script>

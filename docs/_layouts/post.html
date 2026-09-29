@@ -19,6 +19,7 @@ layout: default
     {% if page.imagen %}<img class="portada" src="{{ page.imagen }}" alt="">{% endif %}
     <div class="indice" id="indice" hidden><p>📌 En este atajo</p></div>
     <div class="contenido">{{ content }}</div>
+    {% include boletin.html origen="articulo" %}
     <div class="compartir">
       <p>¿Le sirve a alguien que conoces? <b>Compártelo:</b></p>
       <div>
