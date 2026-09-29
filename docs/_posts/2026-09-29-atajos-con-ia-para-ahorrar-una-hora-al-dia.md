@@ -6,20 +6,18 @@ date: 2026-09-29 17:44:24 -04:00
 tags: ["atajos IA", "productividad", "resumen de correos", "gestión de tareas"]
 ---
 
-Introducción
-
 Si sientes que te faltan horas cada día, la IA puede devolvértelas. No hace falta dominar nada complejo. Con tres atajos sencillos puedes recuperar hasta una hora diaria. Aquí te explico cómo aplicarlos, con ejemplos prácticos y plantillas listas para usar.
 
 ## 1) Resumir correos largos en 3 puntos y una acción
 
-Qué hacer
+### Qué hacer
 
 Pide a un asistente que lea tu correo y lo convierta en:
 
 - Tres puntos clave (lo esencial).
 - Una acción clara y priorizada.
 
-Por qué funciona
+### Por qué funciona
 
 Leer un correo largo puede tomar varios minutos. Un resumen bien pensado te permite entender y decidir en 30–60 segundos. No se trata de eliminar contexto; se trata de extraer lo útil.
 
@@ -27,68 +25,68 @@ Ejemplo de prompt (texto que le das a la IA)
 
 - "Resume este correo en tres puntos clave y una acción concreta que yo deba tomar. Mantén el tono neutral."
 
-Cómo usarlo en la práctica
+### Cómo usarlo en la práctica
 
 1. Copia el correo y pégalo en la herramienta de IA.
 2. Ejecuta el prompt anterior.
 3. Responde o archiva según la acción sugerida.
 
-Consejos rápidos
+### Consejos rápidos
 
 - Si el correo tiene cifras o fechas importantes, pídele a la IA que incluya una línea con "Fechas y cifras relevantes".
 - Para correos de equipo, añade: "Sugiere la respuesta si debo delegar".
 
 ## 2) Ordenar tu lista de pendientes por urgencia e impacto
 
-Qué hacer
+### Qué hacer
 
 Dale a la IA tu lista de tareas y pídele que la ordene combinando dos criterios: urgencia (plazos) e impacto (resultado). El resultado te dará una secuencia práctica para planear la semana.
 
-Por qué funciona
+### Por qué funciona
 
 Muchas listas son solo basura organizada. Ordenarlas por urgencia e impacto evita que pierdas tiempo en tareas poco relevantes.
 
-Ejemplo de prompt
+### Ejemplo de prompt
 
 - "Tengo esta lista de 10 tareas. Ordénalas por prioridad combinando urgencia e impacto. Para cada tarea, indica: categoría (Baja/Media/Alta), tiempo estimado y una recomendación para empezar hoy." 
 
-Salida esperada (ejemplo simplificado)
+### Salida esperada (ejemplo simplificado)
 
 - Tarea A — Alta — 45 min — Empieza hoy: preparar primer borrador.
 - Tarea B — Media — 2 h — Programar para mañana por la mañana.
 
-Cómo planear la semana
+### Cómo planear la semana
 
 1. Toma las tareas marcadas como Alta y bloquea tiempo en tu calendario.
 2. Agrupa tareas similares para hacerlas en batch.
 3. Revisa la lista al final del día y pide a la IA que reordene lo que quede.
 
-Consejos rápidos
+### Consejos rápidos
 
 - Si tienes tareas con dependencias, añade eso al prompt: "Marca tareas dependientes".
 - Si trabajas con equipo, pide estimaciones de tiempo conservadoras.
 
 ## 3) Usar IA para el primer borrador y editar tú después
 
-Qué hacer
+### Qué hacer
 
 Pide a la IA un primer borrador de cualquier texto: email, propuesta, post o descripción de producto. Tú te encargas de editar y dar la voz final.
 
-Por qué funciona
+### Por qué funciona
 
 Escribir desde cero es lento. Editar un texto ya hecho suele ser el doble de rápido. Además, puedes controlar el tono, la longitud y el detalle.
 
-Ejemplo de prompt
+### Ejemplo de prompt
 
 - "Escribe un email de 150-200 palabras para pedir una reunión con un cliente, tono profesional pero cercano. Incluye opciones de fecha." 
 
-Flujo recomendado
+### Flujo recomendado
 
 1. Genera un borrador con indicaciones claras (audiencia, tono, objetivo, límite de palabras).
 2. Revisa y ajusta: elimina lo irrelevante, añade datos concretos.
 3. Pídele a la IA que revise la versión final solo para coherencia y gramática.
 
-Consejos rápidos
+### Consejos rápidos
 
 - Proporciona ejemplos de tu estilo si quieres que el texto suene como tú.
 - Guarda versiones: borrador IA, tu edición, versión final. Te ayudará a mejorar prompts.
@@ -105,7 +103,7 @@ Consejos rápidos
 - Ordenar pendientes: "Ordena esta lista por urgencia e impacto y sugiere una acción para hoy: [lista]"
 - Primer borrador: "Genera un borrador de [tipo de texto], objetivo [x], audiencia [y], tono [z], longitud [n palabras]"
 
-Prueba uno hoy
+### Prueba uno hoy
 
 No hace falta aplicar las tres a la vez. Prueba solo el que más te duele hoy: el correo que te roba tiempo, la lista interminable o la próxima pieza que debes escribir. Empieza con una y cuéntame cuál te devolvió más tiempo.
 
