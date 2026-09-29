@@ -3,38 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title and page.layout != 'home' %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+<title>{% if page.title and page.layout != 'home' %}{{ page.title }} · {% endif %}{{ site.title }}{% if page.layout == 'home' %} · Atajos prácticos que te ahorran tiempo y dinero{% endif %}</title>
 <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ page.title | default: site.title }}">
 <meta property="og:description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 {% if page.imagen %}<meta property="og:image" content="{{ page.imagen }}">{% endif %}
-<meta name="theme-color" content="#0f1115">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0d12">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FFD400'/><text x='50' y='70' font-size='62' font-family='Arial Black,Arial' font-weight='900' text-anchor='middle' fill='%230f1115'>A</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FFD400'/><path d='M30 72 L50 26 L70 72 M38 56 H62' stroke='%230b0d12' stroke-width='11' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ '/assets/estilo.css' | relative_url }}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/estilo.css' | relative_url }}?v=3">
 </head>
-<body>
+<body class="{{ page.layout }}">
+<div class="barra-progreso" id="progreso"></div>
 <header class="top">
   <div class="wrap top-in">
-    <a class="logo" href="{{ '/' | relative_url }}"><span class="logo-a">A</span><span>El Atajo</span></a>
+    <a class="logo" href="{{ '/' | relative_url }}"><span class="logo-a"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 72 L50 26 L70 72 M38 56 H62"/></svg></span><span>El <b>Atajo</b></span></a>
     <nav>
+      <a href="{{ '/' | relative_url }}#atajos">Atajos</a>
       <a href="{{ '/acerca/' | relative_url }}">Acerca de</a>
-      <a class="btn-yt" href="{{ site.youtube }}" target="_blank" rel="noopener">▶ YouTube</a>
+      <a class="btn-yt" href="{{ site.youtube }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg>Suscríbete</a>
     </nav>
   </div>
 </header>
 <main>{{ content }}</main>
+<section class="final">
+  <div class="wrap final-in revela">
+    <div>
+      <p class="eti">Gratis · 1 atajo nuevo cada semana</p>
+      <h2>¿Te gustan los atajos?<br><span class="grad">Hay uno nuevo cada semana.</span></h2>
+      <p class="sub">Videos cortos y directos al grano sobre IA, dinero, negocios y tecnología. Sin relleno.</p>
+    </div>
+    <a class="btn btn-grande" href="{{ site.youtube }}" target="_blank" rel="noopener">▶ Suscribirme al canal</a>
+  </div>
+</section>
 <footer class="pie">
   <div class="wrap">
-    <p><strong>El Atajo</strong> · {{ site.description }}</p>
-    <p><a href="{{ site.youtube }}" target="_blank" rel="noopener">Canal de YouTube</a> · <a href="{{ '/acerca/' | relative_url }}">Acerca de</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
-    <p class="nota">Algunos enlaces son de afiliado: si compras a través de ellos, el proyecto gana una pequeña comisión sin costo extra para ti.</p>
+    <p class="pie-logo"><span class="logo-a"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 72 L50 26 L70 72 M38 56 H62"/></svg></span> <strong>El Atajo</strong></p>
+    <p>{{ site.description }}</p>
+    <p><a href="{{ site.youtube }}" target="_blank" rel="noopener">YouTube</a> · <a href="{{ '/acerca/' | relative_url }}">Acerca de</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+    <p class="nota">Algunos enlaces son de afiliado: si compras a través de ellos, el proyecto gana una pequeña comisión sin costo extra para ti. © {{ site.time | date: '%Y' }} El Atajo.</p>
   </div>
 </footer>
+<script>
+(function(){
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visto');io.unobserve(e.target);}});},{threshold:.12}) : null;
+  document.querySelectorAll('.revela').forEach(function(el){ io ? io.observe(el) : el.classList.add('visto'); });
+  var bar = document.getElementById('progreso');
+  var art = document.querySelector('.contenido');
+  if (bar && art) {
+    var f = function(){ var r = art.getBoundingClientRect(); var total = r.height - innerHeight * .6; var p = Math.min(1, Math.max(0, -r.top / (total > 0 ? total : 1))); bar.style.transform = 'scaleX(' + p + ')'; var s = document.getElementById('pegajoso'); if (s) s.classList.toggle('on', p > .15 && p < .97); };
+    addEventListener('scroll', f, {passive:true}); f();
+  }
+  var toc = document.getElementById('indice');
+  if (toc && art) {
+    var hs = art.querySelectorAll('h2');
+    if (hs.length >= 3) {
+      var ol = document.createElement('ol');
+      hs.forEach(function(h, i){ if (!h.id) h.id = 'sec-' + (i + 1); var li = document.createElement('li'); var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.textContent; li.appendChild(a); ol.appendChild(li); });
+      toc.appendChild(ol); toc.hidden = false;
+    }
+  }
+  document.querySelectorAll('[data-copiar]').forEach(function(b){ b.addEventListener('click', function(){ try { navigator.clipboard.writeText(location.href.split('#')[0]); b.textContent = '¡Copiado!'; setTimeout(function(){ b.textContent = '🔗 Copiar link'; }, 1800); } catch (e) {} }); });
+})();
+</script>
 </body>
 </html>

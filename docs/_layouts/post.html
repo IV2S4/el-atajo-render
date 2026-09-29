@@ -3,16 +3,40 @@ layout: default
 ---
 {% assign palabras = content | strip_html | number_of_words %}
 {% assign min = palabras | divided_by: 200 | plus: 1 %}
-<article class="wrap post">
-  <a class="volver" href="{{ '/' | relative_url }}">← Todos los atajos</a>
-  <p class="meta">{{ page.date | date: "%d/%m/%Y" }} · {{ min }} min de lectura</p>
-  <h1>{{ page.title }}</h1>
-  {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
-  {% if page.tags.size > 0 %}<p class="tags">{% for t in page.tags %}<span>#{{ t }}</span>{% endfor %}</p>{% endif %}
-  {% if page.imagen %}<img class="portada" src="{{ page.imagen }}" alt="">{% endif %}
-  <div class="contenido">{{ content }}</div>
-  <div class="cta">
-    <div><strong>¿Te sirvió este atajo?</strong><br>En el canal hay uno nuevo cada semana.</div>
-    <a class="btn" href="{{ site.youtube }}" target="_blank" rel="noopener">▶ Suscribirme</a>
+{% assign url_abs = page.url | absolute_url %}
+<article class="post">
+  <header class="post-cab">
+    <div class="brillo b1"></div>
+    <div class="wrap angosto">
+      <a class="volver" href="{{ '/' | relative_url }}">← Todos los atajos</a>
+      {% if page.tags.size > 0 %}<p class="tags">{% for t in page.tags limit:4 %}<span>#{{ t }}</span>{% endfor %}</p>{% endif %}
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+      <p class="autor"><span class="logo-a"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 72 L50 26 L70 72 M38 56 H62"/></svg></span><span><b>El Atajo</b><br>{{ page.date | date: "%d/%m/%Y" }} · ⏱ {{ min }} min de lectura</span></p>
+    </div>
+  </header>
+  <div class="wrap angosto">
+    {% if page.imagen %}<img class="portada" src="{{ page.imagen }}" alt="">{% endif %}
+    <div class="indice" id="indice" hidden><p>📌 En este atajo</p></div>
+    <div class="contenido">{{ content }}</div>
+    <div class="compartir">
+      <p>¿Le sirve a alguien que conoces? <b>Compártelo:</b></p>
+      <div>
+        <a class="c-wa" href="https://wa.me/?text={{ page.title | append: ' ' | append: url_abs | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="c-x" href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ url_abs | url_encode }}" target="_blank" rel="noopener">X</a>
+        <a class="c-fb" href="https://www.facebook.com/sharer/sharer.php?u={{ url_abs | url_encode }}" target="_blank" rel="noopener">Facebook</a>
+        <button type="button" data-copiar>🔗 Copiar link</button>
+      </div>
+    </div>
+    {% assign otros = site.posts | where_exp: "p", "p.url != page.url" %}
+    {% if otros.size > 0 %}
+    <h2 class="sec">Sigue con otro atajo</h2>
+    <div class="grid mini">
+      {% for post in otros limit:3 %}
+      <a class="card" href="{{ post.url | relative_url }}"><div class="card-body"><p class="meta">{{ post.date | date: "%d/%m/%Y" }}</p><h3>{{ post.title }}</h3><span class="leer">Leer →</span></div></a>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </article>
+<a class="pegajoso" id="pegajoso" href="{{ site.youtube }}" target="_blank" rel="noopener">▶ Ver más atajos en YouTube</a>
