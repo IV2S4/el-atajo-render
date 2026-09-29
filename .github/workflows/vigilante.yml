@@ -34,6 +34,7 @@ jobs:
           done
           if [ "$OK" = 1 ]; then
             echo "Servidor OK"
+            [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && avisar "🧪 Vigilante conectado: tu servidor AUTONOMON está funcionando ✅"
             [ "$ANTES" = "failure" ] && avisar "✅ Tu servidor AUTONOMON volvió a funcionar."
             exit 0
           fi
