@@ -192,6 +192,40 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     Path(path).write_text(head + "\n".join(lines) + "\n", encoding="utf-8")
 
 
+# ---------------- MINIATURA (videos largos) ----------------
+def partir(texto, ancho=14):
+    palabras, lineas, l = texto.split(), [], ""
+    for w in palabras:
+        if l and len(l) + 1 + len(w) > ancho:
+            lineas.append(l); l = w
+        else:
+            l = (l + " " + w).strip()
+    if l:
+        lineas.append(l)
+    return lineas[:3]
+
+
+def miniatura(video, salida_jpg, texto, color, segundo):
+    """Portada 1280x720: fotograma del video + texto grande con franja de color + marca."""
+    fuentes = sorted(FONTS_DIR.glob("*.ttf"))
+    fuente = str(fuentes[0]) if fuentes else ""
+    col = "#" + ((color or "#FFD400").lstrip("#"))
+    lineas = partir((texto or "").upper())
+    size = 118 if len(lineas) <= 2 else 96
+    esc = lambda t: t.replace("\\", "").replace(":", "\\:").replace("'", "").replace("%", "")
+    filtros = ["scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720",
+               "eq=brightness=-0.08:saturation=1.25",
+               "drawbox=x=0:y=0:w=820:h=720:color=black@0.45:t=fill"]
+    y0 = 360 - (len(lineas) * (size + 26)) // 2
+    for k, l in enumerate(lineas):
+        filtros.append(f"drawtext=fontfile='{fuente}':text='{esc(l)}':fontsize={size}:fontcolor=0x111111:"
+                       f"box=1:boxcolor={col}:boxborderw=18:x=60:y={y0 + k * (size + 26)}")
+    filtros.append(f"drawtext=fontfile='{fuente}':text='EL ATAJO':fontsize=44:fontcolor=white:"
+                   "borderw=3:bordercolor=black:x=w-tw-40:y=h-th-34")
+    run(["ffmpeg", "-y", "-ss", f"{max(1.0, segundo):.2f}", "-i", str(video), "-frames:v", "1",
+         "-vf", ",".join(filtros), "-q:v", "3", str(salida_jpg)])
+
+
 # ---------------- PRINCIPAL ----------------
 def main(payload_path, salida):
     global W, H
@@ -244,6 +278,13 @@ def main(payload_path, salida):
     run(["ffmpeg", "-y", *entradas, "-vf", vf, *mapa,
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-shortest", "-movflags", "+faststart", salida])
+    if data.get("miniatura"):
+        try:
+            seg = caps[1][0] + 4 if len(caps) > 1 else t * 0.3
+            miniatura(tmp / "video.mp4", Path(salida).with_name("miniatura.jpg"), data.get("titulo_miniatura") or data.get("gancho") or "",
+                      (data.get("estilo") or {}).get("color", ""), seg)
+        except Exception as e:
+            print("Sin miniatura:", e, flush=True)
     if caps:   # para los capítulos de YouTube (0:00 Intro, 1:12 ..., etc.)
         Path(str(salida) + ".capitulos.json").write_text(json.dumps(
             [{"segundo": round(ct, 1), "titulo": ti} for ct, ti in caps], ensure_ascii=False), encoding="utf-8")
