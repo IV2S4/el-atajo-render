@@ -15,7 +15,7 @@ concurrency:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 120
     env:
       CALLBACK: ${{ github.event.client_payload.callback }}
       PAYLOAD: ${{ toJson(github.event.client_payload) }}
@@ -66,8 +66,9 @@ jobs:
         env:
           URL: ${{ steps.rel.outputs.url }}
         run: |
-          curl -sS -X POST -H "Content-Type: application/json" \
-            -d "{\"status\":\"done\",\"url\":\"$URL\"}" "$CALLBACK"
+          CAPS=$(cat video.mp4.capitulos.json 2>/dev/null || echo '[]')
+          python3 -c 'import json,os,sys; print(json.dumps({"status":"done","url":os.environ["URL"],"capitulos":json.loads(sys.argv[1])}))' "$CAPS" > body.json
+          curl -sS -X POST -H "Content-Type: application/json" -d @body.json "$CALLBACK"
 
       - name: Avisar a n8n (error)
         if: failure() && env.CALLBACK != ''
