@@ -1,5 +1,6 @@
 ---
 layout: post
+imagen: "https://images.pexels.com/photos/7455935/pexels-photo-7455935.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
 title: "Atajos con IA para ahorrar una hora al día"
 description: "Tres atajos prácticos con herramientas de IA gratis para resumir correos, ordenar pendientes y escribir más rápido."
 date: 2026-09-29 17:44:24 -04:00
@@ -121,3 +122,5 @@ R: No debe. Úsala para el primer borrador y edita para mantener tu voz y precis
 ---
 
 🎬 **¿Prefieres verlo en video?** Este artículo viene de un video del canal [ELATAJO en YouTube](https://www.youtube.com/channel/UCHm8KOaK53B4E68nbNBcfOw). Suscríbete para más atajos.
+
+<small>Foto: [Danik Prihodko](https://www.pexels.com/es-es/@danikprihodko) en [Pexels](https://www.pexels.com)</small>
