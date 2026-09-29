@@ -1,0 +1,13 @@
+<div class="boletin revela">
+  <div class="bol-txt">
+    <p class="eti">📬 Boletín gratis</p>
+    <h2>Recibe los nuevos atajos <span class="grad">cada domingo</span></h2>
+    <p class="sub">Un correo corto con los trucos de la semana. Sin spam y te das de baja cuando quieras.</p>
+  </div>
+  <form class="bol-form" data-boletin data-origen="{{ include.origen | default: 'blog' }}" novalidate>
+    <input type="email" name="email" placeholder="tu@correo.com" autocomplete="email" required aria-label="Tu correo">
+    <input type="text" name="web" tabindex="-1" autocomplete="off" class="trampa" aria-hidden="true">
+    <button class="btn" type="submit">Quiero los atajos</button>
+    <p class="bol-msg" aria-live="polite"></p>
+  </form>
+</div>
