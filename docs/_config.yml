@@ -1,0 +1,9 @@
+title: El Atajo
+description: Atajos prácticos para la vida, el dinero, los negocios y la tecnología. Del canal de YouTube ELATAJO.
+lang: es
+theme: minima
+permalink: /:year/:month/:slug/
+minima:
+  skin: auto
+header_pages:
+  - acerca.md
