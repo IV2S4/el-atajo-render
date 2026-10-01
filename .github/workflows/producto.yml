@@ -1,0 +1,34 @@
+name: Crear producto
+on:
+  push:
+    paths: ['productos/*.json']
+  workflow_dispatch:
+    inputs:
+      archivo:
+        description: 'productos/<slug>.json'
+        required: true
+permissions:
+  contents: write
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Elegir archivo
+        id: f
+        run: |
+          if [ -n "${{ github.event.inputs.archivo }}" ]; then F="${{ github.event.inputs.archivo }}"; else F=$(git diff --name-only HEAD~1 HEAD -- 'productos/*.json' | head -n1); fi
+          echo "archivo=$F" >> $GITHUB_OUTPUT
+          echo "slug=$(basename "$F" .json)" >> $GITHUB_OUTPUT
+      - name: Fuentes
+        run: sudo apt-get install -y fonts-noto-color-emoji >/dev/null 2>&1 || true
+      - name: Hacer PDF y portadas
+        run: python3 producto.py "${{ steps.f.outputs.archivo }}"
+      - name: Publicar
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          TAG="producto-${{ steps.f.outputs.slug }}"
+          gh release delete "$TAG" -y --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" salida/guia.pdf salida/portada-cuadrada.png salida/portada-ancha.png salida/venta.txt --title "Producto: ${{ steps.f.outputs.slug }}" --notes "Generado por AUTONOMON"
