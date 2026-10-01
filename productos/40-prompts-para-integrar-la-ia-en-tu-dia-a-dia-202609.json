@@ -1,0 +1,215 @@
+{
+  "titulo": "40 prompts para integrar la IA en tu día a día",
+  "titulo_resaltado": "integrar la IA en tu día a día",
+  "subtitulo": "Domina tu día a día, potencia tu aprendizaje y mejora tus relaciones con la inteligencia artificial.",
+  "introduccion": "La Inteligencia Artificial ya no es cosa del futuro, ¡es una herramienta poderosa que puedes usar hoy mismo para mejorar cada aspecto de tu vida personal! Desde organizar tus tareas hasta potenciar tu creatividad o gestionar tu bienestar, la IA está aquí para simplificar y enriquecer tu rutina. Prepárate para descubrir cómo.",
+  "consejos": [
+    "Sé específico: Cuanto más detallado seas con tu solicitud, mejores serán los resultados.",
+    "Experimenta: No temas probar diferentes enfoques o pedir revisiones. La IA aprende contigo.",
+    "Adapta: Los prompts son puntos de partida. Modifícalos para que encajen perfectamente con tus necesidades.",
+    "Itera: Si la primera respuesta no es ideal, pide un ajuste. Por ejemplo: 'Hazlo más corto', 'Enfócalo en [tema específico]'.",
+    "Usa tu creatividad: Piensa en cómo la IA puede ayudarte en situaciones inesperadas de tu vida."
+  ],
+  "secciones": [
+    {
+      "nombre": "Organización Personal y Gestión del Tiempo",
+      "emoji": "⏰",
+      "intro": "Optimiza tu rutina diaria, gestiona tus tareas y planifica con mayor eficiencia usando la IA.",
+      "items": [
+        {
+          "titulo": "Agenda Diaria Optimizada",
+          "texto": "Crea una agenda diaria optimizada para mí, considerando mis prioridades [prioridad 1, prioridad 2] y mis bloques de tiempo disponibles [horario de trabajo, tiempo libre]."
+        },
+        {
+          "titulo": "Desglose de Tareas",
+          "texto": "Desglosa mi objetivo '[objetivo personal, ej. organizar mi armario]' en pequeños pasos accionables que pueda completar esta semana."
+        },
+        {
+          "titulo": "Recordatorio Motivador",
+          "texto": "Redacta un recordatorio motivador para mi tarea '[tarea]' que me inspire a empezar a las [hora]."
+        },
+        {
+          "titulo": "Análisis de Pros y Contras",
+          "texto": "Ayúdame a ponderar los pros y contras de [opción A] vs [opción B] para mi situación personal de [situación], resaltando los factores clave a considerar."
+        },
+        {
+          "titulo": "Optimización de Rutina",
+          "texto": "Analiza mi rutina actual de [rutina actual, ej. mañanas] e identifica 3-5 puntos donde puedo usar la IA para hacerla más eficiente o placentera."
+        },
+        {
+          "titulo": "Lista de Compras Inteligente",
+          "texto": "Genera una lista de compras para mi cena de esta noche, que será [nombre del plato], asumiendo que ya tengo [ingredientes que ya tengo]."
+        },
+        {
+          "titulo": "Lista de Equipaje",
+          "texto": "Crea una lista de equipaje esencial para un viaje de [número] días a [destino] en [estación del año], considerando actividades como [actividades]."
+        },
+        {
+          "titulo": "Estructura de Carpetas Digitales",
+          "texto": "Sugiere una estructura de carpetas lógica para organizar mis fotos personales de [años/eventos], incluyendo subcategorías útiles."
+        }
+      ]
+    },
+    {
+      "nombre": "Aprendizaje Continuo y Desarrollo Personal",
+      "emoji": "🧠",
+      "intro": "Expande tus conocimientos, adquiere nuevas habilidades y fomenta tu crecimiento personal con la ayuda de la IA.",
+      "items": [
+        {
+          "titulo": "Explicación Sencilla",
+          "texto": "Explícame el concepto de '[concepto complejo, ej. computación cuántica]' de forma sencilla, como si se lo explicara a un principiante, usando analogías prácticas."
+        },
+        {
+          "titulo": "Plan de Estudio Personalizado",
+          "texto": "Proporciona un plan de estudio autodirigido de 4 semanas para aprender los fundamentos de '[nueva habilidad, ej. fotografía digital]', con recursos recomendados."
+        },
+        {
+          "titulo": "Resumen de Libro",
+          "texto": "Resume los puntos clave del libro '[título del libro]' y cómo puedo aplicar sus enseñanzas a mi vida personal."
+        },
+        {
+          "titulo": "Práctica de Idiomas",
+          "texto": "Actúa como mi tutor de [idioma]. Dame 5 frases comunes para practicar en una conversación sobre [tema] y corrígeme si cometo errores."
+        },
+        {
+          "titulo": "Ideas de Hobbies Creativos",
+          "texto": "Sugiere 5 nuevas ideas de hobbies creativos que puedo empezar con un presupuesto limitado, considerando mi interés en [interés personal]."
+        },
+        {
+          "titulo": "Mejora de Habilidades",
+          "texto": "Dame 3 ejercicios o actividades para mejorar mi habilidad en '[habilidad personal, ej. escritura creativa]' que pueda practicar en 15 minutos al día."
+        },
+        {
+          "titulo": "Entender Noticias Complejas",
+          "texto": "Explica las implicaciones de la noticia '[titular de la noticia]' para el ciudadano común, sin jerga técnica."
+        },
+        {
+          "titulo": "Preguntas de Autorreflexión",
+          "texto": "Formula 5 preguntas de autorreflexión sobre mi crecimiento personal en el último año, enfocándote en [área específica, ej. gestión emocional]."
+        }
+      ]
+    },
+    {
+      "nombre": "Comunicación y Relaciones Personales",
+      "emoji": "💬",
+      "intro": "Mejora tus interacciones sociales y redacta mensajes efectivos para fortalecer tus lazos personales.",
+      "items": [
+        {
+          "titulo": "Mensaje Sensible",
+          "texto": "Ayúdame a redactar un mensaje amable y claro para [persona] explicando que no podré asistir a [evento] debido a [razón breve], ofreciendo una alternativa si es posible."
+        },
+        {
+          "titulo": "Mensaje de Disculpa",
+          "texto": "Escribe un mensaje de disculpa sincero y conciso a [persona] por [motivo de la disculpa], expresando mi arrepentimiento y voluntad de mejorar."
+        },
+        {
+          "titulo": "Invitación a Evento Social",
+          "texto": "Crea un texto informal para invitar a mis amigos a una reunión en casa el [fecha] para [actividad, ej. noche de juegos], pidiéndoles que confirmen asistencia."
+        },
+        {
+          "titulo": "Ideas de Regalos Originales",
+          "texto": "Dame 5 ideas de regalos originales para [persona] que cumpla [edad] y tenga intereses como [intereses de la persona], con un presupuesto de [cantidad]."
+        },
+        {
+          "titulo": "Iniciadores de Conversación",
+          "texto": "Sugiere 3-5 preguntas interesantes para iniciar una conversación con alguien nuevo en [contexto social, ej. una fiesta], evitando temas polémicos."
+        },
+        {
+          "titulo": "Nota de Agradecimiento Personalizada",
+          "texto": "Redacta una nota de agradecimiento personalizada para [persona] por [favor/regalo], resaltando cómo me ayudó/gustó."
+        },
+        {
+          "titulo": "Comunicar Límites Personales",
+          "texto": "Ayúdame a formular una frase asertiva y respetuosa para comunicar a [persona] un límite personal sobre [tema], sin ser confrontativo."
+        },
+        {
+          "titulo": "Planificación de Actividad Grupal",
+          "texto": "Propón 3-4 opciones de actividades para un grupo de [número] amigos este fin de semana, considerando intereses como [intereses del grupo] y un presupuesto moderado."
+        }
+      ]
+    },
+    {
+      "nombre": "Creatividad, Ocio y Entretenimiento",
+      "emoji": "🎨",
+      "intro": "Desbloquea tu potencial creativo, planifica tus viajes y encuentra nuevas formas de ocio con la inteligencia artificial.",
+      "items": [
+        {
+          "titulo": "Ideas de Historias Cortas",
+          "texto": "Genera 3 ideas de historias cortas para un proyecto de escritura personal, basándote en el género [género, ej. fantasía urbana] y un elemento principal de [elemento, ej. un objeto mágico perdido]."
+        },
+        {
+          "titulo": "Modificación de Recetas",
+          "texto": "Modifica esta receta de [nombre del plato] para que sea [característica, ej. vegetariana/más saludable], manteniendo un sabor similar si es posible."
+        },
+        {
+          "titulo": "Pasos para Proyectos DIY",
+          "texto": "Dame los pasos detallados para un proyecto de bricolaje sencillo: construir [objeto, ej. una estantería pequeña] con materiales reciclados [materiales]."
+        },
+        {
+          "titulo": "Recomendación de Películas/Libros",
+          "texto": "Recomiéndame 3 películas/libros que exploren el tema de [tema, ej. la resiliencia humana], basándose en mi gusto por [género/director/autor]."
+        },
+        {
+          "titulo": "Playlist Personalizada",
+          "texto": "Crea una lista de reproducción con 10 canciones para [estado de ánimo/actividad, ej. relajarme después del trabajo], incluyendo artistas similares a [artista favorito]."
+        },
+        {
+          "titulo": "Itinerario de Viaje",
+          "texto": "Diseña un itinerario de 3 días para un viaje a [ciudad/región], incluyendo atracciones principales, opciones de comida y actividades para un viajero con [intereses]."
+        },
+        {
+          "titulo": "Prompt de Escritura Creativa",
+          "texto": "Dame un prompt de escritura creativa inusual que incluya [elemento 1, elemento 2] y que me invite a explorar [emoción/conflicto]."
+        },
+        {
+          "titulo": "Planificación de Proyecto de Hobby",
+          "texto": "Detalla los pasos para iniciar mi proyecto de [hobby, ej. pintar miniaturas], desde la compra de materiales básicos hasta las primeras técnicas."
+        }
+      ]
+    },
+    {
+      "nombre": "Bienestar y Hábitos Saludables",
+      "emoji": "🧘‍♀️",
+      "intro": "Fomenta tu salud mental y física, crea rutinas de bienestar y mejora tus hábitos diarios con la IA.",
+      "items": [
+        {
+          "titulo": "Ejercicio de Mindfulness",
+          "texto": "Crea un breve ejercicio de mindfulness de 5 minutos centrado en [sentido, ej. la respiración] o [parte del cuerpo, ej. los sonidos del entorno] para realizar en casa."
+        },
+        {
+          "titulo": "Plan de Comidas Saludables",
+          "texto": "Genera un plan de comidas saludables para 3 días, enfocado en [objetivo, ej. aumentar la ingesta de vegetales], con opciones de desayuno, almuerzo y cena."
+        },
+        {
+          "titulo": "Rutina de Ejercicios en Casa",
+          "texto": "Diseña una rutina de ejercicios en casa de 20 minutos para principiantes, enfocada en [zona corporal, ej. cuerpo completo], sin necesidad de equipo."
+        },
+        {
+          "titulo": "Ideas para Gamificar Hábitos",
+          "texto": "Sugiere 5 formas creativas de gamificar mi seguimiento de hábitos para '[hábito, ej. beber más agua]', que me mantengan motivado."
+        },
+        {
+          "titulo": "Técnicas de Alivio del Estrés",
+          "texto": "Enumera 3-4 técnicas rápidas y sencillas para aliviar el estrés que puedo practicar en cualquier momento del día, como la respiración o estiramientos."
+        },
+        {
+          "titulo": "Afirmaciones Positivas",
+          "texto": "Escribe 3 afirmaciones positivas personalizadas para mi objetivo de [objetivo, ej. tener más confianza en mí mismo], que pueda repetir diariamente."
+        },
+        {
+          "titulo": "Mejora de Rutina Nocturna",
+          "texto": "Propón 4-5 cambios pequeños en mi rutina nocturna que puedan ayudarme a mejorar la calidad de mi sueño, evitando el uso de pantallas."
+        },
+        {
+          "titulo": "Preguntas de Reflexión sobre Bienestar",
+          "texto": "Hazme 5 preguntas para reflexionar sobre mi nivel de energía y bienestar emocional esta semana, buscando identificar patrones o áreas de mejora."
+        }
+      ]
+    }
+  ],
+  "cierre": "Has llegado al final de esta guía, pero solo es el comienzo de tu viaje con la IA. Ahora tienes 40 prompts listos para transformar tu día a día, impulsando tu productividad, creatividad y bienestar. ¡Empieza a experimentar y descubre todo lo que puedes lograr!",
+  "precio": "9.99",
+  "resumen": "40 prompts listos para copiar y pegar para usar la IA en tu organización personal, aprendizaje, comunicación, creatividad y bienestar.",
+  "descripcion_venta": "¿Cansado de sentir que el día se te escapa o que tus proyectos personales no avanzan? ¿Sabías que la Inteligencia Artificial puede ser tu mejor aliada para retomar el control y potenciar cada aspecto de tu vida personal?\n\nEn 'El Atajo', hemos creado la guía definitiva para que integres la IA en tu rutina diaria sin complicaciones. Este pack de 40 prompts está diseñado para personas como tú, que buscan eficiencia, inspiración y una forma más inteligente de vivir. Olvídate de las herramientas complejas y el lenguaje técnico. Aquí tienes soluciones prácticas y listas para usar.\n\nCon esta guía, podrás:\n•   Organizar tu tiempo y tareas personales como nunca antes.\n•   Acelerar tu aprendizaje y desarrollo en cualquier área que te interese.\n•   Mejorar tu comunicación y fortalecer tus relaciones interpersonales.\n•   Desbloquear tu creatividad y dar vida a tus ideas de ocio.\n•   Cultivar hábitos saludables y potenciar tu bienestar emocional.\n\nEstos prompts son tu atajo para transformar tu día a día. Simplemente copia, pega y personaliza. ¡Prepárate para experimentar una nueva forma de vivir y aprovechar el poder de la IA a tu favor!",
+  "edicion": "Septiembre 2026"
+}
