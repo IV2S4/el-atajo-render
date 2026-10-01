@@ -1,0 +1,215 @@
+{
+  "titulo": "40 prompts para plantillas y checklists de dinero personal",
+  "titulo_resaltado": "plantillas y checklists",
+  "subtitulo": "Prompts listos para crear plantillas y listas prácticas sobre ahorro, presupuesto y deudas",
+  "introduccion": "Este pack contiene 40 prompts listos para copiar y pegar que te ayudan a generar plantillas y checklists útiles para administrar tu dinero personal: presupuestos, planes de ahorro, control de deudas y rutinas mensuales. Cada prompt incluye [corchetes] para que los personalices rápidamente y obtengas outputs prácticos que puedas usar en hojas de cálculo, documentos o apps de productividad.",
+  "consejos": [
+    "Rellena los campos entre [corchetes] antes de pegar el prompt en tu IA.",
+    "Pide la salida en formato CSV o tabla si la vas a importar a una hoja de cálculo.",
+    "Usa variantes del prompt para crear versiones semanales, mensuales y anual.",
+    "Guarda las plantillas generadas en tu gestor de archivos y crea un índice para acceso rápido.",
+    "Revisa y ajusta las categorías a tu realidad: lo que funcione para ti es lo válido."
+  ],
+  "secciones": [
+    {
+      "nombre": "Presupuestos mensuales",
+      "emoji": "📊",
+      "intro": "Prompts para generar plantillas de presupuesto detalladas y fáciles de usar, listas para imprimir o importar.",
+      "items": [
+        {
+          "titulo": "Presupuesto mensual básico",
+          "texto": "Crea una plantilla de presupuesto mensual en formato tabla con columnas: categoría, presupuesto asignado, gasto real, diferencia y porcentaje; incluye filas para [ingresos netos], ahorro objetivo y gastos fijos recurrentes."
+        },
+        {
+          "titulo": "Presupuesto por categorías personalizado",
+          "texto": "Genera una plantilla de presupuesto por categorías con etiquetas: vivienda, transporte, alimentación, ocio, suscripciones, ahorros y otros; asigna porcentajes recomendados según un ingreso mensual de [ingreso mensual neto] y ajusta para [número de personas] en el hogar."
+        },
+        {
+          "titulo": "Presupuesto 50/30/20 adaptado",
+          "texto": "Crea una plantilla que aplique la regla 50/30/20 pero permita ajustar los porcentajes, indicando cuánto destinar a necesidades, deseos y ahorro/deuda según [ingresos netos] y metas de ahorro específicas."
+        },
+        {
+          "titulo": "Control de gastos diarios",
+          "texto": "Diseña una hoja de control diario con campos: fecha, categoría, descripción, método de pago, monto y etiqueta de prioridad; incluye filtros para [mes] y resumen semanal."
+        },
+        {
+          "titulo": "Presupuesto de eventos o viajes",
+          "texto": "Genera una plantilla de presupuesto para [nombre del evento o destino] que incluya transporte, alojamiento, alimentación, actividades, imprevistos y total acumulado con seguimiento de pagos realizados."
+        },
+        {
+          "titulo": "Comparador presupuesto vs gasto",
+          "texto": "Crea una tabla comparativa que muestre presupuesto planeado vs gasto real por categoría y calcule desviaciones en valor y porcentaje para [meses a comparar]."
+        },
+        {
+          "titulo": "Presupuesto con fondo de amortiguación",
+          "texto": "Diseña una plantilla que aparte mensualmente un fondo de amortiguación equivalente a [número de días o monto] y muestre cómo afecta al flujo de caja mensual."
+        },
+        {
+          "titulo": "Resumen visual del presupuesto",
+          "texto": "Genera un dashboard simple con gráficos: pastel por categorías, barras de gasto por semana y línea de saldo disponible para [mes]; incluye instrucciones para exportar a Excel o Google Sheets."
+        }
+      ]
+    },
+    {
+      "nombre": "Planes de ahorro",
+      "emoji": "💰",
+      "intro": "Prompts para crear plantillas y calendarios de ahorro: retos, metas automáticas y seguimiento de progresos.",
+      "items": [
+        {
+          "titulo": "Plan de ahorro por objetivo",
+          "texto": "Genera una plantilla que divida un objetivo de ahorro de [monto objetivo] en cuotas mensuales hasta [fecha objetivo], mostrando saldo acumulado y fechas de revisión."
+        },
+        {
+          "titulo": "Reto de ahorro 52 semanas adaptado",
+          "texto": "Crea un calendario de ahorro semanal tipo 52 semanas adaptable: permite empezar con [monto inicial], aumentar progresivamente y sumar un resumen anual con total guardado."
+        },
+        {
+          "titulo": "Sinking funds (fondos por propósito)",
+          "texto": "Diseña una plantilla que gestione múltiples sinking funds, cada uno con nombre, meta, fecha límite, aporte mensual y saldo actual; incluye prioridad y orden de uso en caso de emergencia."
+        },
+        {
+          "titulo": "Calculadora de tasa de ahorro",
+          "texto": "Crea una plantilla que calcule la tasa de ahorro mensual y anual a partir de [ingreso neto] y [ahorro mensual], mostrando proyección a 6, 12 y 24 meses."
+        },
+        {
+          "titulo": "Plantilla de aportes automáticos",
+          "texto": "Genera un checklist para configurar transferencias automáticas a cuentas de ahorro con pasos, fechas, montos recurrentes y notificaciones; personaliza con [banco o app]."
+        },
+        {
+          "titulo": "Plan de ahorro con ingresos variables",
+          "texto": "Crea una plantilla que recalcula aportes a ahorro según ingreso variable: pide rango de ingresos estimado por mes y regla para aportar (por ejemplo porcentaje o monto mínimo) para [periodo]."
+        },
+        {
+          "titulo": "Proyección de emergencia",
+          "texto": "Diseña una plantilla para proyectar un fondo de emergencia que cubra [número de meses] de gastos esenciales, mostrando cuánto ahorrar cada mes y fecha estimada de cumplimiento."
+        },
+        {
+          "titulo": "Checklist de optimización de ahorros",
+          "texto": "Genera una checklist paso a paso para aumentar ahorros en 30 días: revisar suscripciones, renegociar servicios, ajustar categorías y automatizar aportes, con campos para marcar acciones completadas."
+        }
+      ]
+    },
+    {
+      "nombre": "Gestión de deudas",
+      "emoji": "🔗",
+      "intro": "Prompts para crear plantillas de seguimiento y listas de pasos para pagar deudas de forma organizada y priorizada.",
+      "items": [
+        {
+          "titulo": "Registro detallado de deudas",
+          "texto": "Genera una hoja con lista de deudas que incluya: acreedor, saldo actual, tasa de interés, pago mínimo, fecha de corte y fecha de pago; añade columna para estrategia prioritaria; completar con [lista de deudas]."
+        },
+        {
+          "titulo": "Plan de amortización personalizado",
+          "texto": "Crea una tabla de amortización para la deuda de [nombre del acreedor] con saldo inicial [saldo], tasa anual [tasa %] y pago mensual [monto]; muestra calendario de pagos y saldo restante."
+        },
+        {
+          "titulo": "Estrategia avalancha vs bola de nieve",
+          "texto": "Genera un comparador que simule dos planes: avalancha (priorizar tasa más alta) y bola de nieve (priorizar saldo menor), usando los datos de [todas tus deudas] y mostrando tiempo estimado de pago en cada método."
+        },
+        {
+          "titulo": "Checklist para negociar con acreedores",
+          "texto": "Crea un guion y checklist paso a paso para negociar plazos o condiciones con un acreedor, incluyendo información a tener a mano: saldo, fecha de último pago, propuesta concreta y preguntas a hacer; personalizar para [acreedor]."
+        },
+        {
+          "titulo": "Calendario de pagos de deudas",
+          "texto": "Genera un calendario mensual que marque fechas de vencimiento de cada deuda, alertas de recordatorio y monto a pagar; permite exportar alarmas a calendario digital con [email o app]."
+        },
+        {
+          "titulo": "Simulador de pagos extraordinarios",
+          "texto": "Diseña una plantilla que muestre el efecto de pagos adicionales de [monto extra] sobre la duración total de la deuda y los intereses ahorrados, con opciones de aplicar a capital o a pagos futuros."
+        },
+        {
+          "titulo": "Checklist para consolidación de deudas",
+          "texto": "Crea una lista de verificación con pasos y preguntas para evaluar una consolidación: tasa ofrecida, comisiones, plazo, impacto en crédito y costos totales; personaliza con [oferta propuesta]."
+        },
+        {
+          "titulo": "Resumen de impacto en flujo",
+          "texto": "Genera una tabla que muestre cómo las obligaciones de deuda afectan tu flujo mensual: ingresos, gastos fijos, pagos de deuda y saldo disponible, con recomendaciones para liberar [monto objetivo] mensualmente."
+        }
+      ]
+    },
+    {
+      "nombre": "Checklists mensuales y rutinas",
+      "emoji": "🗂️",
+      "intro": "Checklists prácticos para revisar tu dinero periódicamente y mantener el control sin perder tiempo.",
+      "items": [
+        {
+          "titulo": "Rutina mensual de finanzas personales",
+          "texto": "Crea un checklist mensual con pasos: revisar saldo de cuentas, categorizar gastos del mes, conciliar tarjetas, actualizar presupuesto y revisar metas de ahorro; personalízalo para el día [día del mes]."
+        },
+        {
+          "titulo": "Checklist de cierre semanal",
+          "texto": "Genera una lista de tareas semanales para mantener el control: ingresar gastos, revisar suscripciones, programar pagos y ajustar transferencias a ahorro; incluye tiempo estimado por tarea."
+        },
+        {
+          "titulo": "Revisión trimestral de metas",
+          "texto": "Diseña una plantilla de revisión trimestral con indicadores: progreso de ahorro, deuda pendiente, variación de ingresos y decisiones a tomar por categoría; incluye espacio para notas y acciones."
+        },
+        {
+          "titulo": "Auditoría de facturas y suscripciones",
+          "texto": "Crea un checklist para auditar suscripciones y facturas: identificar servicios activos, fecha de renovación, costo anual y acción recomendada (mantener, cancelar, negociar) para [periodo]."
+        },
+        {
+          "titulo": "Checklist de preparación para imprevistos",
+          "texto": "Genera una lista de verificación para estar listo ante imprevistos: fondo de emergencia, seguros básicos, documentos digitales y contactos importantes; incluye asignaciones de responsable si aplica."
+        },
+        {
+          "titulo": "Revisión de inversión básica",
+          "texto": "Crea un checklist simple para revisar inversiones o ahorro a plazo: saldo, rendimiento, vencimiento y opciones de reinversión; personaliza para [tipo de cuenta]."
+        },
+        {
+          "titulo": "Checklist para cambios de vida",
+          "texto": "Genera una lista de pasos financieros a revisar al cambiar de empleo, mudanza o nacimiento de un hijo: actualizar presupuesto, revisar seguros, y ajustar ahorro para metas nuevas."
+        },
+        {
+          "titulo": "Checklist de documentación financiera",
+          "texto": "Crea un checklist para organizar documentos: contratos, extractos, comprobantes de pago y claves, con sugerencia de carpeta digital y periodo de retención para cada tipo."
+        }
+      ]
+    },
+    {
+      "nombre": "Optimizar gastos y control",
+      "emoji": "🔍",
+      "intro": "Prompts para plantillas que identifiquen fugas de dinero, optimicen suscripciones y calculen impacto de recortes en tu presupuesto.",
+      "items": [
+        {
+          "titulo": "Auditoría de gastos en 7 pasos",
+          "texto": "Genera una plantilla paso a paso para auditar tus gastos del último mes: clasificar, identificar top 10 gastos, marcar suscripciones, proponer recortes y calcular ahorro potencial estimado."
+        },
+        {
+          "titulo": "Lista de verificación para renegociar tarifas",
+          "texto": "Crea una checklist con pasos y argumentos para renegociar tarifas de servicios (internet, móvil, seguros) y un campo para registrar ofertas y fechas de seguimiento para [proveedor]."
+        },
+        {
+          "titulo": "Plantilla para seguimiento de suscripciones",
+          "texto": "Diseña una hoja que liste todas las suscripciones con costo, fecha de renovación, uso mensual y acción recomendada (mantener, cancelar, cambiar) para revisar cada [mes/trimestre]."
+        },
+        {
+          "titulo": "Calculadora de costo por uso",
+          "texto": "Genera una plantilla que calcule el costo por uso de un servicio o suscripción: costo mensual dividido por usos mensuales estimados, para [servicio] y propone umbral para mantener o cancelar."
+        },
+        {
+          "titulo": "Checklist para reducir gastos recurrentes",
+          "texto": "Crea una lista de acciones concretas para reducir gastos fijos: cambiar plan, agrupar servicios, automatizar pagos para descuentos y revisar pólizas; incluye un campo para registrar ahorro estimado por acción."
+        },
+        {
+          "titulo": "Plantilla de compras grandes",
+          "texto": "Diseña una plantilla para evaluar compras grandes (electrónica, muebles): precio, alternativas, financiación, impacto en presupuesto y periodo de amortización, con decisión final y motivo."
+        },
+        {
+          "titulo": "Simulación de recorte presupuestario",
+          "texto": "Genera una herramienta que aplique un recorte del [porcentaje] a ciertas categorías y muestre cómo afectaría al total disponible y al tiempo para alcanzar metas de ahorro."
+        },
+        {
+          "titulo": "Checklist para priorizar pagos",
+          "texto": "Crea una lista de verificación para decidir qué pagos priorizar ante falta de liquidez: gastos esenciales, pagos mínimos de deuda y aportes al fondo de emergencia, con instrucciones para cada escenario."
+        }
+      ]
+    }
+  ],
+  "cierre": "Usa estos prompts como base: personaliza los [corchetes], prueba variantes y guarda las plantillas que mejor funcionen para automatizar tu control financiero.",
+  "precio": "9",
+  "resumen": "40 prompts listos para crear plantillas y checklists de ahorro, presupuesto y deudas.",
+  "descripcion_venta": "Pack práctico con 40 prompts listos para copiar y pegar que te permiten generar plantillas y checklists reales para manejar tu dinero personal sin complicaciones. Ideal para quienes quieren organizar presupuestos, diseñar planes de ahorro efectivos y gestionar deudas con pasos claros. • Incluye 5 secciones: presupuestos mensuales, planes de ahorro, gestión de deudas, checklists mensuales y optimización de gastos. • 8 prompts por sección, cada uno con [corchetes] para personalizar rápidamente en tu conversación con la IA. • Salidas pensadas para exportar a hojas de cálculo, crear calendarios de pago, checklists imprimibles y dashboards simples. • Instrucciones para generar tablas, calendarios y listas de verificación que puedas usar directamente en tu flujo de trabajo. No promete resultados económicos específicos ni asesoría legal o médica; es una herramienta práctica para mejorar tu disciplina financiera y productividad.",
+  "edicion": "Octubre 2026"
+}
