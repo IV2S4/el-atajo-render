@@ -1,0 +1,60 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:700;src:url(node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2)}
+@font-face{font-family:Inter;font-weight:900;src:url(node_modules/@fontsource/inter/files/inter-latin-900-normal.woff2)}
+body{margin:0;background:#101218;font-family:Inter,'DejaVu Sans',sans-serif;color:#eef0f5;width:3200px}
+.hd{padding:56px 64px 26px;display:flex;justify-content:space-between;align-items:flex-end}
+.hd h1{font-size:84px;font-weight:900;margin:0;letter-spacing:-2px;line-height:1}
+.hd h1 span{color:#ffc81f}
+.hd p{margin:14px 0 0;color:#9aa2b2;font-size:26px}
+.leg{display:flex;gap:26px;font-size:22px;color:#c7ccd6}
+.leg i{display:inline-block;width:16px;height:16px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+.stats{display:flex;gap:16px;margin-top:22px}
+.stats div{background:#181b23;border:1px solid #2a2f3b;border-radius:14px;padding:10px 18px;font-size:20px;color:#9aa2b2}
+.stats b{color:#fff;font-size:30px;margin-right:6px}
+.row{display:flex;gap:24px;padding:0 64px 24px}
+.panel{flex:1;background:#171a21;border:1px solid #262b36;border-radius:18px;overflow:hidden;position:relative;min-width:0}
+.panel .t{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #262b36;font-size:24px;font-weight:700}
+.panel .t small{font-size:17px;color:#3ccf92;font-weight:700}
+.panel .t .z{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:10px}
+.panel svg{display:block;width:100%;background-image:radial-gradient(#2a2f3b 1.2px,transparent 1.2px);background-size:22px 22px}
+.ft{padding:6px 64px 44px;color:#6f7787;font-size:20px}
+</style></head><body>
+<div class="hd"><div><h1>AUTONOMON <span>· mi ecosistema en n8n</span></h1><p>Los __NF__ flujos tal como están armados en tu servidor · __FECHA__</p>
+<div class="stats"><div><b>__NA__</b>flujos activos</div><div><b id="nn"></b>nodos</div><div><b>5</b>videos por semana</div><div><b>$0</b>al mes</div></div></div>
+<div class="leg"><span><i style="background:#ff7a57"></i>Canal</span><span><i style="background:#3ccf92"></i>Dinero</span><span><i style="background:#b08cff"></i>Asistente</span><span><i style="background:#9aa2b2"></i>Mantenimiento</span></div></div>
+<div id="rows"></div>
+<div class="ft">Cada cuadro es un nodo de n8n y cada línea es el camino que sigue la información. Los círculos de abajo son las herramientas de la IA (Gemini, OpenAI, búsqueda, tablas).</div>
+<script>
+const D=__DATA__;
+const ZC={canal:'#ff7a57',din:'#3ccf92',asis:'#b08cff',man:'#9aa2b2'};
+const T={scheduleTrigger:['⏰','#e8a600'],errorTrigger:['⚠','#e25b3a'],executeWorkflowTrigger:['↪','#e8a600'],telegramTrigger:['✈','#2aa1e0'],webhook:['⚡','#e8a600'],
+telegram:['✈','#2aa1e0'],httpRequest:['🌐','#5b6bd6'],code:['{}','#f08a24'],dataTable:['▦','#20a67a'],dataTableTool:['▦','#20a67a'],if:['⋔','#2f9e8f'],switch:['⋔','#2f9e8f'],set:['✎','#4b7bec'],wait:['⏳','#9b59b6'],
+agent:['🤖','#8a5cd6'],chainLlm:['🔗','#8a5cd6'],lmChatGoogleGemini:['G','#4285f4'],lmChatOpenAi:['AI','#10a37f'],outputParserStructured:['{ }','#6b7280'],toolSerpApi:['🔍','#6b7280'],memoryBufferWindow:['🧠','#6b7280'],
+gmailTool:['✉','#d44638'],googleCalendarTool:['📅','#4285f4'],toolCalculator:['±','#6b7280'],toolWorkflow:['↪','#6b7280'],httpRequestTool:['🌐','#5b6bd6'],
+openAi:['AI','#10a37f'],youTube:['▶','#ff0033'],executeWorkflow:['↪','#e8a600'],n8n:['n8n','#ea4b71'],convertToFile:['📄','#6b7280'],extractFromFile:['📄','#6b7280'],
+mailerLite:['ML','#09c269'],manualTrigger:['▶','#e8a600'],respondToWebhook:['↩','#e8a600'],stopAndError:['✖','#e25b3a']};
+const SUB=new Set(['lmChatGoogleGemini','lmChatOpenAi','outputParserStructured','toolSerpApi','memoryBufferWindow','gmailTool','googleCalendarTool','toolCalculator','toolWorkflow','httpRequestTool','dataTableTool']);
+let total=0;
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function panel(w,widthPx){
+  const ns=w.nodes; total+=ns.length;
+  const xs=ns.map(n=>n[2]), ys=ns.map(n=>n[3]);
+  const minx=Math.min(...xs)-90, maxx=Math.max(...xs)+170, miny=Math.min(...ys)-60, maxy=Math.max(...ys)+150;
+  const vw=maxx-minx, vh=maxy-miny;
+  const s=Math.min(0.62, widthPx/vw); const H=Math.max(200, Math.round(vh*s));
+  let g='';
+  for(const [a,b,k] of w.edges){ const A=ns[a],B=ns[b]; if(!A||!B) continue;
+    if(k===1){ const x1=B[2]+40,y1=B[3]+80,x2=A[2]+40,y2=A[3]; g+=`<path d="M${x2} ${y2} C ${x2} ${y2-60}, ${x1} ${y1+60}, ${x1} ${y1}" stroke="#5a6070" stroke-width="3" stroke-dasharray="8 7" fill="none"/>`; }
+    else { const x1=A[2]+80,y1=A[3]+40,x2=B[2],y2=B[3]+40; const dx=Math.max(60,Math.abs(x2-x1)/2); g+=`<path d="M${x1} ${y1} C ${x1+dx} ${y1}, ${x2-dx} ${y2}, ${x2} ${y2}" stroke="#8b93a3" stroke-width="3.5" fill="none"/><circle cx="${x2}" cy="${y2}" r="5" fill="#8b93a3"/>`; } }
+  for(const n of ns){ const [ic,col]=T[n[1]]||['•','#6b7280']; const x=n[2],y=n[3]; const lab=n[0].length>24?n[0].slice(0,23)+'…':n[0];
+    if(SUB.has(n[1])){ g+=`<circle cx="${x+40}" cy="${y+40}" r="34" fill="#20242e" stroke="${col}" stroke-width="4"/><text x="${x+40}" y="${y+52}" text-anchor="middle" font-size="30" font-weight="700" fill="${col}">${ic}</text>`; }
+    else { const trig=/Trigger$|webhook/.test(n[1]); g+=`<rect x="${x}" y="${y}" width="80" height="80" rx="${trig?'40 14 14 40':'14'}" fill="#232733" stroke="${col}" stroke-width="4"/><text x="${x+40}" y="${y+53}" text-anchor="middle" font-size="32" font-weight="700" fill="${col}">${ic}</text>`; }
+    g+=`<text x="${x+40}" y="${y+112}" text-anchor="middle" font-size="19" fill="#c7ccd6">${esc(lab)}</text>`; }
+  return `<div class="panel"><div class="t"><span><span class="z" style="background:${ZC[w.z]}"></span>${esc(w.n.replace(' · ',' · '))}</span>${w.a===false?'<small style="color:#6f7787">○ apagado</small>':'<small>● activo</small>'}</div><svg viewBox="${minx} ${miny} ${vw} ${vh}" style="height:${H}px" preserveAspectRatio="xMidYMid meet" font-family="Inter,DejaVu Sans,sans-serif">${g}</svg></div>`;
+}
+const R=document.getElementById('rows');
+for(const row of D.rows){ if(!row.every(n=>D.w[n])) continue; const div=document.createElement('div'); div.className='row'; const wpx=(3200-128-24*(row.length-1))/row.length; div.innerHTML=row.map(n=>panel(D.w[n],wpx)).join(''); R.appendChild(div); }
+document.getElementById('nn').textContent=total;
+</script></body></html>
