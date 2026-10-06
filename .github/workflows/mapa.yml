@@ -1,0 +1,50 @@
+name: Foto del ecosistema
+
+on:
+  push:
+    paths:
+      - 'mapa/pedidos/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mapa
+  cancel-in-progress: false
+
+jobs:
+  foto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Herramientas
+        run: npm install --no-save --no-audit --no-fund puppeteer-core@22 @fontsource/inter@5
+
+      - name: Dibujar el ecosistema
+        run: |
+          PEDIDO=$(ls mapa/pedidos/*.json | sort | tail -1)
+          echo "Pedido: $PEDIDO"
+          python3 mapa/mapa.py "$PEDIDO" poster.html
+          CHROME=$(which google-chrome || which chromium) node mapa/foto.js
+          ls -la ecosistema-*
+
+      - name: Mandarla por Telegram
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -sS -F chat_id="$CHAT" -F photo=@ecosistema-chico.jpg \
+            -F caption="🗺️ Tu ecosistema AUTONOMON tal como está ahora en n8n. Abajo te va la versión grande para hacer zoom." \
+            "https://api.telegram.org/bot$TOKEN/sendPhoto" | head -c 300; echo
+          curl -sS -F chat_id="$CHAT" -F document=@ecosistema-n8n.png \
+            "https://api.telegram.org/bot$TOKEN/sendDocument" | head -c 300; echo
+
+      - name: Guardar copia (release "mapa")
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view mapa >/dev/null 2>&1 || gh release create mapa --title "Mapa del ecosistema" --notes "Última foto del ecosistema AUTONOMON."
+          gh release upload mapa ecosistema-n8n.png ecosistema-chico.jpg --clobber
