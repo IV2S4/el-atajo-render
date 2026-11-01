@@ -1,0 +1,214 @@
+{
+  "titulo": "40 prompts para emprender y conseguir clientes",
+  "titulo_resaltado": "emprender y conseguir clientes",
+  "subtitulo": "Plan paso a paso de 30 días para lanzar tu oferta y captar clientes con bajo presupuesto.",
+  "introduccion": "Este pack contiene 40 prompts listos para copiar y pegar, diseñados para guiarte durante 30 días desde la validación hasta las primeras ventas y la automatización sin gastar mucho. Cada prompt está orientado a acciones concretas, pruebas rápidas y mensajes prácticos para usar en canales reales.",
+  "consejos": [
+    "Prioriza una prueba mínima antes de invertir en publicidad.",
+    "Registra métricas simples (interacciones, leads, reuniones) para decidir en 7 días.",
+    "Usa mensajes directos y contenido reutilizable para multiplicar el alcance sin costo.",
+    "Automatiza solo lo que repites 3+ veces; lo demás consérvalo manual al principio."
+  ],
+  "secciones": [
+    {
+      "nombre": "Validación rápida",
+      "emoji": "🧪",
+      "intro": "Pruebas sencillas para confirmar demanda en 7–14 días antes de invertir más tiempo o dinero.",
+      "items": [
+        {
+          "titulo": "Hipótesis del problema",
+          "texto": "Escribe en una frase la hipótesis de problema que resuelve [tu producto/servicio] para [cliente ideal] y añade 3 señales claras que prueben que el problema existe."
+        },
+        {
+          "titulo": "Encuesta de una pregunta",
+          "texto": "Genera un texto de encuesta de 1 pregunta para enviar por [canal] que confirme si [cliente ideal] tiene exactamente el problema [X], incluyendo 3 opciones de respuesta y una CTA para comentar."
+        },
+        {
+          "titulo": "Oferta mínima viable (OMV)",
+          "texto": "Redacta la propuesta de una OMV que puedas entregar en 1 sesión o entrega corta para [cliente ideal], detallando qué incluye y cuál será el criterio de satisfacción."
+        },
+        {
+          "titulo": "Micro-landing de prueba",
+          "texto": "Crea el copy para una micro-landing (titular, subtítulo, 3 bullets y CTA) para promocionar [oferta] a [cliente ideal] que puedas montar en [herramienta gratuita]."
+        },
+        {
+          "titulo": "Mensaje para validar interés por DM",
+          "texto": "Escribe un mensaje directo breve para enviar a [lista/contacto] que describa la solución en 1 frase, pregunte por interés y proponga una llamada de 10 minutos."
+        },
+        {
+          "titulo": "Encuesta post-prueba",
+          "texto": "Prepara 5 preguntas cortas para enviar a los primeros usuarios de [oferta] que identifiquen mejoras, probabilidades de recomendar y permiso para usar su testimonio."
+        },
+        {
+          "titulo": "Prueba de precio rápida",
+          "texto": "Sugiere 3 opciones de precio para [oferta] con mensajes distintos para probar en publicaciones o mensajes con presupuesto diario de [presupuesto diario], más la métrica que medirás."
+        },
+        {
+          "titulo": "Anuncio lean para validar",
+          "texto": "Redacta un texto corto para un anuncio de bajo costo en [canal] que comunique la promesa principal de [oferta], el CTA y el indicador de éxito a 7 días."
+        }
+      ]
+    },
+    {
+      "nombre": "Propuesta y posicionamiento",
+      "emoji": "🎯",
+      "intro": "Define claramente qué vendes, para quién y por qué te elegirán, con mensajes listos para canales y pruebas A/B.",
+      "items": [
+        {
+          "titulo": "Propuesta de valor única",
+          "texto": "Escribe una propuesta de valor en una frase para [oferta] que destaque el resultado específico para [cliente ideal] y por qué es diferente a alternativas comunes."
+        },
+        {
+          "titulo": "Elevator pitch de 30 segundos",
+          "texto": "Redacta un elevator pitch de 2-3 oraciones para presentar [oferta] en conversaciones rápidas, incluyendo problema, solución y próximo paso claro."
+        },
+        {
+          "titulo": "Titular para redes",
+          "texto": "Crea 5 titulares cortos para probar en [canal] que atraigan a [cliente ideal] usando problemas, beneficios, curiosidad y prueba social."
+        },
+        {
+          "titulo": "3 beneficios principales",
+          "texto": "Lista y redacta 3 beneficios concretos y medibles que [cliente ideal] obtiene con [oferta], cada uno en una línea directa para usar en bullets."
+        },
+        {
+          "titulo": "FAQ esencial",
+          "texto": "Escribe 6 preguntas frecuentes breves y sus respuestas claras sobre [oferta], enfocadas en dudas de decisión y entrega."
+        },
+        {
+          "titulo": "Manejo de objeciones",
+          "texto": "Genera 6 respuestas cortas y empáticas a las objeciones más comunes que podría tener [cliente ideal] sobre precio, tiempo y resultados."
+        },
+        {
+          "titulo": "Prueba social rápida",
+          "texto": "Crea un modelo de testimonio de cliente para pedir a los primeros usuarios de [oferta] que puedas publicar en una micro-landing o redes."
+        },
+        {
+          "titulo": "Público objetivo detallado",
+          "texto": "Describe en 5 puntos el perfil de [cliente ideal] (ocupación, dolor principal, canal preferido, presupuesto aproximado y objeción más común)."
+        }
+      ]
+    },
+    {
+      "nombre": "Marketing barato",
+      "emoji": "📣",
+      "intro": "Estrategias de bajo costo y alto impacto para generar atención y leads durante 30 días sin grandes inversiones.",
+      "items": [
+        {
+          "titulo": "Calendario de contenido 30 días",
+          "texto": "Genera un calendario con 30 ideas de contenido para [canal principal] que puedas publicar en menos de 30 minutos cada una y que agrupe contenido educativo, social y CTA."
+        },
+        {
+          "titulo": "Plantilla de publicación en LinkedIn",
+          "texto": "Escribe 5 variaciones de una publicación para LinkedIn dirigida a [cliente ideal] que cuente un pequeño caso, el problema y la invitación a agendar."
+        },
+        {
+          "titulo": "Carrusel de Instagram",
+          "texto": "Crea el guion de 7 diapositivas para un carrusel en Instagram sobre cómo [oferta] resuelve [problema], con CTA en la última diapositiva."
+        },
+        {
+          "titulo": "Secuencia de emails fríos",
+          "texto": "Genera una secuencia de 3 emails para outreach frío a [segmento] con asunto, cuerpo corto y CTA para agendar una llamada de descubrimiento."
+        },
+        {
+          "titulo": "Mensaje para grupos y comunidades",
+          "texto": "Redacta un mensaje respetuoso y de valor para publicar en [nombre del grupo/comunidad] que invite a probar [oferta] sin parecer venta directa."
+        },
+        {
+          "titulo": "Plan de republicación",
+          "texto": "Escribe un plan para republicar una pieza de contenido principal en 5 formatos diferentes (post, hilo, short, audio, imagen) para maximizar alcance."
+        },
+        {
+          "titulo": "Campaña de referidos básica",
+          "texto": "Crea el copy de la invitación y la recompensa (baja fricción) para activar un programa de referidos entre tus primeros clientes de [oferta]."
+        },
+        {
+          "titulo": "Anuncio de prueba con bajo presupuesto",
+          "texto": "Redacta un anuncio corto para probar en [plataforma] con presupuesto total de [monto] que explique la oferta y la acción deseada en 1 frase."
+        }
+      ]
+    },
+    {
+      "nombre": "Ventas y procesos",
+      "emoji": "🤝",
+      "intro": "Scripts, checklists y procesos simples para convertir leads en clientes sin complicarte con herramientas caras.",
+      "items": [
+        {
+          "titulo": "Guion para llamada de descubrimiento",
+          "texto": "Escribe un guion de 6 pasos para una llamada de 20 minutos con [cliente potencial], incluyendo preguntas clave, cómo presentar la oferta y cierre para la siguiente acción."
+        },
+        {
+          "titulo": "Checklist de cualificación",
+          "texto": "Genera una checklist de 8 criterios para decidir si un lead de [cliente ideal] es apto para [oferta] antes de invertir tiempo en una propuesta."
+        },
+        {
+          "titulo": "Propuesta corta",
+          "texto": "Redacta una propuesta de 1 página para enviar por email con resumen de necesidades, solución, entregables y plazos para [cliente] en formato listo para pegar."
+        },
+        {
+          "titulo": "Secuencia de onboarding",
+          "texto": "Crea una secuencia de 4 mensajes (email o WhatsApp) para el primer mes después de la venta que explique próximos pasos y cómo obtener soporte."
+        },
+        {
+          "titulo": "Plantilla de contrato simple",
+          "texto": "Genera el texto de un acuerdo simple (no legal) que describa servicios, entregables, plazos y formas de pago para usar como borrador con [cliente]."
+        },
+        {
+          "titulo": "Recordatorio de pago amable",
+          "texto": "Escribe 3 mensajes escalonados para recordar un pago pendiente a [cliente] manteniendo tono profesional y ofreciendo facilidades."
+        },
+        {
+          "titulo": "Guion para manejar objeciones en llamada",
+          "texto": "Redacta respuestas claras y empáticas a 5 objeciones comunes durante una llamada de venta con ejemplos de lenguaje para usar en frío."
+        },
+        {
+          "titulo": "Oferta de upsell/cross-sell",
+          "texto": "Crea un mensaje breve para ofrecer un servicio complementario a clientes actuales de [oferta], explicando beneficio adicional y precio opcional."
+        }
+      ]
+    },
+    {
+      "nombre": "Productividad y automatización",
+      "emoji": "⚙️",
+      "intro": "Sistemas simples y automaciones con herramientas gratuitas o baratas para ahorrar tiempo y mantener el control del negocio.",
+      "items": [
+        {
+          "titulo": "Calendario de 30 días operativo",
+          "texto": "Genera un calendario diario de 30 días con tareas concretas (validación, contenido, outreach, llamadas) para lanzar y probar [oferta] en 30 minutos cada día."
+        },
+        {
+          "titulo": "Checklist diaria de productividad",
+          "texto": "Crea una checklist de 10 ítems para completar cada día que asegure foco en ventas, creación de contenido y seguimiento de leads para [tu proyecto]."
+        },
+        {
+          "titulo": "Automatización básica con Google Sheets",
+          "texto": "Escribe los pasos y el script corto para capturar leads en [formulario] y añadirlos automáticamente a una hoja de Google Sheets con etiquetas [etiquetas]."
+        },
+        {
+          "titulo": "Flujo simple en Zapier/Make",
+          "texto": "Diseña un flujo de automatización para que cuando llegue un lead en [canal], se cree tarea en [lista/tareas] y se envíe un email de confirmación."
+        },
+        {
+          "titulo": "CRM mínimo viable",
+          "texto": "Define los 8 campos imprescindibles que debe tener un CRM simple para gestionar leads de [oferta] y cómo priorizarlos en color o etiqueta."
+        },
+        {
+          "titulo": "Dashboard de métricas esencial",
+          "texto": "Indica qué 6 métricas semanales debes registrar para medir progreso (ej. leads, llamadas, conversiones) y cómo interpretarlas para acciones rápidas."
+        },
+        {
+          "titulo": "Solicitud de testimonios automatizada",
+          "texto": "Redacta un mensaje para enviar automáticamente a clientes 7 días después de la entrega pidiendo un testimonio breve y permiso para publicarlo."
+        },
+        {
+          "titulo": "Checklist para buscar alianzas",
+          "texto": "Crea una lista de 10 tipos de socios potenciales y un mensaje corto para proponer colaboraciones de intercambio de valor con [tipo de socio]."
+        }
+      ]
+    }
+  ],
+  "cierre": "Usa estos prompts día a día: copia, personaliza lo mínimo y mide resultados para iterar rápido sin gastar más de lo necesario.",
+  "precio": "9",
+  "resumen": "Pack de 40 prompts para lanzar y conseguir clientes en 30 días con poco presupuesto.",
+  "descripcion_venta": "Esta guía PDF reúne 40 prompts accionables, organizados en 5 secciones, para ayudarte a lanzar una oferta y conseguir clientes con recursos limitados. Pensada para emprendedores y profesionales que necesitan pasos concretos y reutilizables, la colección incluye:\n• Validaciones rápidas para comprobar demanda en días, no semanas.\n• Mensajes listos para DM, emails, anuncios y micro-landings.\n• Scripts de ventas, onboarding y manejo de objeciones.\n• Calendario de 30 días y checklists diarios para mantener el ritmo.\n• Ideas de automatización y flujos con herramientas gratuitas para ahorrar tiempo.\nCada prompt está listo para copiar y pegar; solo reemplaza los campos entre [corchetes] por tus datos. No promete ganancias garantizadas: ofrece métodos prácticos para probar, aprender e iterar con bajo costo y máxima velocidad.",
+  "edicion": "Noviembre 2026"
+}
